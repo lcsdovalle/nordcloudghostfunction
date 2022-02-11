@@ -2,24 +2,24 @@ from helpers.authApi import authService
 import json
 import sqlalchemy
 from sqlalchemy.sql import select
+import os
 
 #------------------------------------------------------------------#
 # Key for running the routine
 #------------------------------------------------------------------#
 key = "fa47c14adc939ee35190cec22d429263"
 
+
+#------------------------------------------------------------------#
+# Get instance information
+#------------------------------------------------------------------#
 escopo = [
     'https://www.googleapis.com/auth/cloud-platform',
     'https://www.googleapis.com/auth/sqlservice.admin'
     ]
 service = authService(escopo,"dbadmin.json").getService('sqladmin','v1beta4')
-
-#------------------------------------------------------------------#
-# Get instance information
-#------------------------------------------------------------------#
-service = authService(escopo,"dbadmin.json").getService('sqladmin','v1beta4')
 try:
-    req = service.instances().list(project="ghosttestes")
+    req = service.instances().list(project=os.environ.get('GCP_PROJECT'))
     resp = req.execute()
     r = resp.get('items')[0]
     connName = r.get('connectionName')
