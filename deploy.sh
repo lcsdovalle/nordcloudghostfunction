@@ -4,7 +4,6 @@ gcloud iam service-accounts create dbadmin --display-name="Cloud Sql Admin"
 gcloud services enable cloudfunctions.googleapis.com
 gcloud services enable sqladmin.googleapis.com
 SSA=dbadmin@$PROJECT_ID.iam.gserviceaccount.com
-git clone https://github.com/lcsdovalle/nordcloudghostfunction.git
 gcloud iam service-accounts keys create dbadmin.json --iam-account=$SSA
 gcloud projects add-iam-policy-binding $PROJECT_ID \
 --member serviceAccount:$SSA \
