@@ -38,7 +38,6 @@ MANIFEST
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
-dbadmin.json
 # Unit test / coverage reports
 htmlcov/
 .tox/
