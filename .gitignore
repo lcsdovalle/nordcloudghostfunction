@@ -1,12 +1,14 @@
 # Byte-compiled / optimized / DLL files
+# Distribution / packaging
+# C extensions
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
 *.so
-
-# Distribution / packaging
+.vscode/launch.json
+.vscode
+.vscode/*
 .Python
 build/
 develop-eggs/
