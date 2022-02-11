@@ -12,26 +12,26 @@ escopo = [
     'https://www.googleapis.com/auth/cloud-platform',
     'https://www.googleapis.com/auth/sqlservice.admin'
     ]
+service = authService(escopo,"dbadmin.json").getService('sqladmin','v1beta4')
+
+#------------------------------------------------------------------#
+# Get instance information
+#------------------------------------------------------------------#
+service = authService(escopo,"dbadmin.json").getService('sqladmin','v1beta4')
+try:
+    req = service.instances().list(project="ghosttestes")
+    resp = req.execute()
+    r = resp.get('items')[0]
+    connName = r.get('connectionName')
+    instanceName = r.get('name')
+    region = r.get('region')
+    project = r.get('project')
+except Exception as e:
+    print(e)
+
+
 
 def cleanUpDB(request):
-
-    service = authService(escopo,"dbadmin.json").getService('sqladmin','v1beta4')
-
-    #------------------------------------------------------------------#
-    # Get instance information
-    #------------------------------------------------------------------#
-    service = authService(escopo,"dbadmin.json").getService('sqladmin','v1beta4')
-    try:
-        req = service.instances().list(project="ghosttestes")
-        resp = req.execute()
-        r = resp.get('items')[0]
-        connName = r.get('connectionName')
-        instanceName = r.get('name')
-        region = r.get('region')
-        project = r.get('project')
-    except Exception as e:
-        print(e)
-
     #------------------------------------------------------------------#
     # Verify the key
     #------------------------------------------------------------------#
